@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb
+
+# Datasets — store locally, referenced in README
+data/
+datasets/
+*.zip
+*.tar.gz
+
+# Model weights and ONNX exports — too large for Git
+runs/
+weights/
+models/*.pt
+models/*.onnx
+models/*.engine
+
+# Video outputs
+output/
+outputs/
+*.mp4
+*.avi
+*.mov
+
+# Caching stubs (used during dev to skip re-running inference)
+stubs/
+*.pkl
+*.pickle
+
+# OS
+.DS_Store
+Thumbs.db
