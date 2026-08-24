@@ -11,7 +11,7 @@ dist/
 
 # Virtual environments
 .env
-.venv
+.venv/
 env/
 venv/
 ENV/
@@ -19,14 +19,16 @@ ENV/
 # IDEs
 .vscode/
 .idea/
+.vs/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*.pyproj.user
 
 # Jupyter
-.ipynb_checkpoints
+.ipynb_checkpoints/
 *.ipynb
 
 # Datasets — store locally, referenced in README
@@ -41,6 +43,9 @@ weights/
 models/*.pt
 models/*.onnx
 models/*.engine
+*.pt
+*.onnx
+*.engine
 
 # Video outputs
 output/
