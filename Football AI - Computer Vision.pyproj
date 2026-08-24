@@ -23,6 +23,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="annotate_video.py" />
     <Compile Include="Football_AI___Computer_Vision.py" />
     <Compile Include="src\training\train_ball.py" />
     <Compile Include="src\training\train_field.py" />
