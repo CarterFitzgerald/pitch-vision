@@ -1,8 +1,10 @@
 # pitch-vision
 
+![CI Status](https://github.com/CarterFitzgerald/pitch-vision/actions/workflows/ci.yml/badge.svg)
+
 A football match analysis system built with computer vision and machine learning. Processes broadcast video to track players, classify teams, estimate ball possession, and calculate real-world player speeds — using YOLO26 for detection and automatic pitch keypoint detection for perspective-correct measurements.
 
-> **Status:** In development — Phase 1 (detection training) in progress.
+> **Status:** In development — Phase 3 (Dashboard + Team classification + possession tracking) in progress.
 
 ---
 
@@ -28,7 +30,7 @@ Raw video
                 │
          ByteTrack (tracking IDs)
                 │
-         YOLOv8-pose (field keypoints → homography)
+         YOLO26-pose (field keypoints → homography)
                 │
     ┌───────────┴───────────┐
     │                       │
@@ -53,7 +55,7 @@ Three datasets from [Roboflow Universe](https://universe.roboflow.com), all CC B
 |---|---|---|---|
 | [football-players-detection v20](https://universe.roboflow.com/roboflow-jvuqo/football-players-detection-3zvbc/dataset/20) | YOLO26 | 372 | ball, goalkeeper, player, referee |
 | [football-ball-detection v4](https://universe.roboflow.com/roboflow-jvuqo/football-ball-detection-rejhg/dataset/4) | YOLO26 | 4,948 | ball |
-| [football-field-detection v18](https://universe.roboflow.com/roboflow-jvuqo/football-field-detection-f07vi/dataset/18) | YOLOv8-pose | 317 | pitch (32 keypoints) |
+| [football-field-detection v18](https://universe.roboflow.com/roboflow-jvuqo/football-field-detection-f07vi/dataset/18) | YOLO26-pose | 317 | pitch (32 keypoints) |
 
 Datasets are not included in this repo. Download from the links above and place under `data/` — see [Setup](#setup) below.
 
@@ -63,7 +65,7 @@ Datasets are not included in this repo. Download from the links above and place 
 
 - **Python 3.11+**
 - **YOLO26** (Ultralytics) — player and ball detection
-- **YOLOv8-pose** (Ultralytics) — pitch keypoint detection
+- **YOLO26-pose** (Ultralytics) — pitch keypoint detection
 - **supervision** — ByteTrack multi-object tracking, video annotation
 - **OpenCV** — video I/O, optical flow, perspective transform
 - **scikit-learn** — KMeans jersey colour clustering
@@ -146,19 +148,28 @@ python src/pipeline.py --input path/to/match.mp4 --output output/annotated.mp4
 
 | Model | mAP50 | mAP50-95 |
 |---|---|---|
-| Players (YOLO26) | — | — |
-| Ball (YOLO26) | — | — |
-| Field keypoints (YOLOv8-pose) | — | — |
+| Players (YOLO26) | 0.910 | 0.629 |
+| Ball (YOLO26) | 0.882 | 0.551 |
+| Field keypoints (YOLO26-pose) | 0.970 | 0.725 |
 
 ---
 
 ## Roadmap
 
 - [x] Dataset acquisition and inspection
-- [ ] Phase 1 — YOLO26 detection training (players + ball)
-- [ ] Phase 2 — ByteTrack multi-object tracking
-- [ ] Phase 3 — Team classification + possession tracking
+- [x] Phase 1 — YOLO26 detection training (players + ball)
+- [x] Phase 2 — ByteTrack multi-object tracking
+- [x] Phase 3 — Team classification + possession tracking
 - [ ] Phase 4 — Speed estimation + annotated video output
+
+---
+
+## Current Challenges
+
+- **Ball not being detected** — Ball often not detected, especially in the air; currently this has a knock-on effect on possession tracking and ball mapping. Possible solutions include:
+  - Increasing ball dataset size with more diverse images
+  - Training a separate YOLO26 model specifically for aerial ball detection
+  - Using optical flow to track the ball when not detected
 
 ---
 

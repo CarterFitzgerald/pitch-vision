@@ -11,23 +11,36 @@ if __name__ == "__main__":
 
     results = model.train(
         data="data/ball/data.yaml",
-        epochs=100,
+        epochs=150,
         imgsz=1280,
         batch=2,
-        workers=0,          # back to 0 — 8 workers at 1280 is eating VRAM
-        patience=20,
+        workers=0,
+        patience=40,
         save=True,
-        save_period=5,      # save checkpoint every 5 epochs so you don't lose progress
+        save_period=10,
         project="runs/ball",
-        name="yolo26x",
+        name="yolo26x_v3",
         pretrained=True,
         optimizer="AdamW",
-        lr0=0.0005,
-        mosaic=1.0,
-        mixup=0.05,
-        conf=0.25,
-        amp=True,           # Automatic Mixed Precision — cuts VRAM usage significantly
-        cache=False,        # turn cache OFF — at 1280 it's consuming too much RAM
+        lr0=0.0001,
+        lrf=0.001,
+        weight_decay=0.001,
+        warmup_epochs=8,
+        mosaic=0.0,          # OFF entirely — this was destroying small ball features
+        mixup=0.0,
+        copy_paste=0.0,
+        close_mosaic=0,
+        amp=True,
+        cache=False,
+        box=12.0,
+        cls=0.2,
+        dropout=0.1,
+        hsv_h=0.02,          # use colour jitter instead of mosaic for augmentation
+        hsv_s=0.5,
+        hsv_v=0.3,
+        fliplr=0.5,
+        translate=0.1,
+        scale=0.3,           # mild scale augmentation — simulates different ball distances
     )
 
     print(f"Training complete. Best weights: {results.save_dir}/weights/best.pt")
