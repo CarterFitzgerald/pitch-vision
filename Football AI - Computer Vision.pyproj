@@ -24,7 +24,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="annotate_video.py" />
+    <Compile Include="dashboard.py" />
     <Compile Include="Football_AI___Computer_Vision.py" />
+    <Compile Include="src\analytics\possession_tracker.py" />
+    <Compile Include="src\analytics\team_classifier.py" />
+    <Compile Include="src\tracking\ball_interpolator.py" />
+    <Compile Include="src\tracking\tracker.py" />
     <Compile Include="src\training\train_ball.py" />
     <Compile Include="src\training\train_field.py" />
     <Compile Include="src\training\train_players.py" />
@@ -11769,6 +11774,7 @@
     <Folder Include="data\players\valid\" />
     <Folder Include="data\players\valid\images\" />
     <Folder Include="data\players\valid\labels\" />
+    <Folder Include="output\" />
     <Folder Include="runs\" />
     <Folder Include="runs\detect\" />
     <Folder Include="runs\detect\runs\" />
@@ -11784,6 +11790,8 @@
     <Folder Include="runs\pose\runs\field\yolo26x_pose\" />
     <Folder Include="runs\pose\runs\field\yolo26x_pose\weights\" />
     <Folder Include="src\" />
+    <Folder Include="src\analytics\" />
+    <Folder Include="src\tracking\" />
     <Folder Include="src\training\" />
     <Folder Include="venv\" />
     <Folder Include="venv\Include\" />
@@ -26570,6 +26578,8 @@
     <Content Include="data\players\valid\labels\798b45_9_7_png.rf.79ca91b8d215a2066be609142d8c4193.txt" />
     <Content Include="data\players\valid\labels\798b45_9_8_png.rf.59149a9735f6d62ea34999856967e695.txt" />
     <Content Include="data\players\valid\labels\a9f16c_8_10_png.rf.5fee010c764d06023eb274cfc2090d6e.txt" />
+    <Content Include="output\annotated_match.mp4" />
+    <Content Include="output\test_frame.jpg" />
     <Content Include="README.md" />
     <Content Include="requirements.txt" />
     <Content Include="runs\detect\runs\ball\yolo26x-5\args.yaml" />

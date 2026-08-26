@@ -159,9 +159,18 @@ python src/pipeline.py --input path/to/match.mp4 --output output/annotated.mp4
 
 - [x] Dataset acquisition and inspection
 - [x] Phase 1 — YOLO26 detection training (players + ball)
-- [ ] Phase 2 — ByteTrack multi-object tracking
-- [ ] Phase 3 — Team classification + possession tracking
+- [x] Phase 2 — ByteTrack multi-object tracking
+- [x] Phase 3 — Team classification + possession tracking
 - [ ] Phase 4 — Speed estimation + annotated video output
+
+---
+
+## Current Challenges
+
+- **Ball not being detected** — Ball often not detected, especially in the air; currently this has a knock-on effect on possession tracking and ball mapping. Possible solutions include:
+  - Increasing ball dataset size with more diverse images
+  - Training a separate YOLO26 model specifically for aerial ball detection
+  - Using optical flow to track the ball when not detected
 
 ---
 
