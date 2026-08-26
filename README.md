@@ -4,7 +4,7 @@
 
 A football match analysis system built with computer vision and machine learning. Processes broadcast video to track players, classify teams, estimate ball possession, and calculate real-world player speeds — using YOLO26 for detection and automatic pitch keypoint detection for perspective-correct measurements.
 
-> **Status:** In development — Phase 3 (Dashboard + Team classification + possession tracking) in progress.
+> **Status:** In development — Phase 2 ByteTrack multi-object tracking in progress.
 
 ---
 
@@ -135,6 +135,7 @@ pip install -r requirements.txt
 # Train detection models (requires datasets in data/)
 python src/training/train_players.py
 python src/training/train_ball.py
+python src/training/train_field.py
 
 # Run the full pipeline on a video
 python src/pipeline.py --input path/to/match.mp4 --output output/annotated.mp4
@@ -149,7 +150,7 @@ python src/pipeline.py --input path/to/match.mp4 --output output/annotated.mp4
 | Model | mAP50 | mAP50-95 |
 |---|---|---|
 | Players (YOLO26) | 0.910 | 0.629 |
-| Ball (YOLO26) | 0.882 | 0.551 |
+| Ball (YOLO26) | 0.898 | 0.586 |
 | Field keypoints (YOLO26-pose) | 0.970 | 0.725 |
 
 ---
